@@ -199,6 +199,64 @@ After this step you will connect to the VM, this might take a few minutes.
 
 ![image](https://github.com/user-attachments/assets/d41a8e7a-6ade-4440-aaf8-d2a21ceb1eb8)
 
+Once inside the VM, confirm by looking at the top of the screen. It will show the IP address.
+
+Then select no for all privacy settings, they are not important to this use case. Select “Accept” once done.
+
+![image](https://github.com/user-attachments/assets/d46831c3-9dbb-496f-be92-10df927bc9f8)
+
+Next to view logs type “Event Viewer” in the search bar in the bottom left of the screen.
+
+![image](https://github.com/user-attachments/assets/38d9a094-f760-489d-9147-0be14ac8c3d0)
+
+Next I want to see if my new VM is able to receive ICMP echo requests (Ping command). I am wanting this to be true so the VM can be easily discoverable by attackers.
+
+First minimize the VM. Then in the home computer open the command line by typing “cmd” in the search bar in the bottom left of the screen.
+
+![image](https://github.com/user-attachments/assets/175b4f9a-69e7-4058-b461-02f81cbe3345)
+
+I can test to see if the VM is able to receive ICMP echo requests by using the Ping command. 
+
+In the command line of your home computer type “ping -t [VM’s IP address]” hit “enter” on the keyboard.
+
+The -t used with the ping command makes it perpetual, meaning it will continuously ping the VM.
+
+![image](https://github.com/user-attachments/assets/4702180e-2f58-4be7-982a-5d9af401c8fe)
+
+I received “request timed out” meaning the new VM cant receive ICMP echo request from the public.
+
+![image](https://github.com/user-attachments/assets/37e362c3-e3c5-472d-8a15-6f933ce67b0f)
+
+To fix this, go back to the VM. Type and select “wf.msc” in the search bar in the bottom left of the VM.
+
+![image](https://github.com/user-attachments/assets/bbcc9fe2-f286-4d31-a074-ecb978e2c08d)
+
+For this use case I am going to turn off the firewall, this is not recommended. I am doing this to be able to receive traffic from anyone in the public.
+
+To do this, inside of Windows Defender Firewall. Select “WIndows Defender Firewall Properties”.
+
+![image](https://github.com/user-attachments/assets/15633b78-b5c6-4f37-8295-0326e7dea4f3)
+
+Next select the arrow connected to “Firewall state” and turn it off for Domain, Private, and Public Profile. Then select “Apply”, then “Ok”
+
+![image](https://github.com/user-attachments/assets/8475a0ef-0888-4905-a043-1c5b52140e3b)
+
+Now that the firewall is off, I will test the Ping command again from my home computer.
+
+If responses are returning, turning off the firewall was successful. 
+
+![image](https://github.com/user-attachments/assets/fad36289-78ac-490b-910b-9e2673d3e8eb)
+
+Back in the new VM, the next step will be to get a powershell script to parse out Windows Event Logs for Failed RDP attacks. This powershell script will also use an API to collect the geographic information.
+
+You can find the script here: Script
+
+You can find the API used here: API
+
+In the VM type and select “PowerShell ISE”. This is a more GUI than Powershell.
+
+
+
 
 
 
