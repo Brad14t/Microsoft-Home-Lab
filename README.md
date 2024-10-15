@@ -249,11 +249,153 @@ If responses are returning, turning off the firewall was successful.
 
 Back in the new VM, the next step will be to get a powershell script to parse out Windows Event Logs for Failed RDP attacks. This powershell script will also use an API to collect the geographic information.
 
-You can find the script here: Script
+You can find the API used here: https://ipgeolocation.io/
 
-You can find the API used here: API
+In the VM type and select “PowerShell ISE”. This is more of a GUI than normal Powershell, making it easier for code.
 
-In the VM type and select “PowerShell ISE”. This is a more GUI than Powershell.
+![image](https://github.com/user-attachments/assets/8822ab08-2f3b-4460-91f9-76052f4ce4f8)
+
+Copy the Script provided.
+
+Select the “New Script” in the top left, paste the copied script.
+
+The only thing needed to be changed for this script to work is, on line 2 you would have to get an API key from the provided link, and input it on line 2 in the "".
+(Will show how to get API key in next few steps)
+
+![image](https://github.com/user-attachments/assets/e85db21c-58c9-43c6-abe7-a99d89e535ce)
+
+Select “File”, then “Save as”. Save to anywhere it can be accessed.
+
+![image](https://github.com/user-attachments/assets/aa631427-696a-4fae-8958-41c8efd8ff87)
+
+Next the only thing needed to make this script work, is an API key from https://ipgeolocation.io/
+
+This step will need you to create an account if you don't already have one. Create an account if needed.
+
+![image](https://github.com/user-attachments/assets/bd374b11-5724-44e0-b3a3-19d0a126e811)
+
+Once an account is created, go to the dashboard and view your API key.
+
+![image](https://github.com/user-attachments/assets/895971db-5ab0-4c80-84fb-7bafbcd83f63)
+
+Then back in the script in the VM, on line 2 replace the string given for your new API key.
+
+![image](https://github.com/user-attachments/assets/2dc83c5b-d669-4116-81a4-af3b0be81f1f)
+
+Next I will test the script. To do this, select “Run Script”. 
+
+The purple text is the API working and outputting the data to a new hidden folder.
+
+![image](https://github.com/user-attachments/assets/5640f394-fcae-4f29-8659-4c6c79cf46de)
+
+To view this data in the hidden folder, copy the file location.
+
+![image](https://github.com/user-attachments/assets/be28a3e2-7e43-4293-85a0-77bbaa90aaea)
+
+Click the windows key + the “r” button, or:
+
+Type and select “Run” in the bottom left search bar.
+
+![image](https://github.com/user-attachments/assets/13f6e22d-9d40-4387-a119-8f923f99dc27)
+
+Paste file location.
+
+![image](https://github.com/user-attachments/assets/2f003405-fc23-4646-baa9-21dcef84de82)
+
+Open “failed_rdp” 
+
+![image](https://github.com/user-attachments/assets/f0246a80-eb46-497e-bddb-013d0a8104fd)
+
+The first 10ish are sample hosts for the script and API.
+
+After those I can view all outputs from the script.
+
+![image](https://github.com/user-attachments/assets/350d8a41-fcf9-451f-bbb0-71f90b3c14b7)
+
+Next I want a way to input this data with the geo location info to the log analytics workspace.
+
+To do that, I need to create a custom log rule. 
+Go back to Microsoft Azure on the home computer. Type “Log Analytics workspaces” in the search bar at the top. 
+
+Select the workspace.
+
+Select the arrow connected to “Settings”
+
+![image](https://github.com/user-attachments/assets/ee57a8a9-3f92-4487-abea-950ff58aff7d)
+
+Select “Tables”.
+
+Select the arrow connected to “Create”.
+
+Select “New custom log (MMA-based)”
+
+![image](https://github.com/user-attachments/assets/7bc4b220-7629-4b32-b9e6-2e175b630283)
+
+To get the sample log from the VM to the home computer.
+
+Click the windows key + the “r” button in the VM. And paste file location: C:\ProgramData
+
+Open “failed_rdp”.
+
+![image](https://github.com/user-attachments/assets/89705f6d-924c-47ad-aff3-61579a03f6b6)
+
+Click: Ctrl + a to select all, then Ctrl + c to copy.
+
+Back on the home computer, open notepad and click Ctrl + v to paste.
+
+![image](https://github.com/user-attachments/assets/1d368c9c-56d1-4e1a-bf93-78813384e579)
+
+Select “File”,  “Save as” to an accessible location.
+
+Back in the Custom log page, select the new file just created.
+
+![image](https://github.com/user-attachments/assets/c5e630c0-f5d1-4a65-82a0-2ae6d9df4532)
+
+Select “Next”
+
+![image](https://github.com/user-attachments/assets/3b81512d-dcab-49a6-b37b-eed4fd1772cd)
+
+Select “Next”
+
+Collection path: is the machine where this data is being collected. Type: select “Windows”. Path: will be the path to the data output by the script. C:\ProgramData\failed_rdp.log\
+
+Then select “Next”
+
+![image](https://github.com/user-attachments/assets/8fb96df6-ba5e-41a1-9a66-a31a560ffe65)
+
+Name new custom log name.
+
+![image](https://github.com/user-attachments/assets/67110760-1347-42f1-be66-9e8c93d6f10f)
+
+Confirm info is correct and select “Create”
+
+![image](https://github.com/user-attachments/assets/ed360b67-ca12-4509-9bc1-948070b27cce)
+
+Back in the workspace, select “Logs” to see if the custom rule is working.
+
+Type name of custom rule just made.
+
+![image](https://github.com/user-attachments/assets/04d695d0-42cd-4155-8ba2-4ce1b03c0279)
+
+Then select “Run”
+
+If no data is loading give it ~10 minutes. Eventually it will show.
+
+![image](https://github.com/user-attachments/assets/872539f5-ca10-4a5a-b0ca-b7aee14b3eb2)
+
+Now I have the raw data, but I want the columns of this data to show whats in the raw data, in a more understandable way.
+
+To do this, use the formated KQL Query in KQL Query mode.
+
+
+
+
+
+
+
+
+
+
 
 
 
