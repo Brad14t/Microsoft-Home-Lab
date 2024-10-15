@@ -1,4 +1,8 @@
 # SIEM_Home_Lab
+
+This walkthrough details how I utilized Microsoft Azure to create a Windows 10 virtual machine in the cloud. I exposed the VM to the internet and employed Azure Log Analytics Workspace, Microsoft Defender for Cloud, and Azure Sentinel to collect and aggregate attack data, which was then visualized on a map in Microsoft Sentinel. The project demonstrates the integration of several tools and resources. I used PowerShell to scan the Event Viewer on the exposed VM, focusing on EventID 4625 (failed logon attempts), and logged that data. Additionally, the PowerShell script sends the IP addresses of failed logon attempts to IPgeolocation.io via an API, allowing Microsoft Sentinel to map the origin of these attempts.
+
+This project was a valuable opportunity to gain hands-on experience with SIEMs, cloud technologies, APIs, and Microsoft Azure. Through this, I learned how to provision and configure cloud resources, analyze SIEM logs, and more. It was an enjoyable and educational experience, and I hope readers will appreciate the effort involved in completing this project.
 Azure Sentinel SIEM Home Lab
 
 First I'm going to set up an Azure account. This will be the cloud environment used in this case.
