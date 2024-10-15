@@ -387,6 +387,37 @@ Now I have the raw data, but I want the columns of this data to show whats in th
 
 To do this, use the formated KQL Query in KQL Query mode.
 
+![image](https://github.com/user-attachments/assets/efd7627d-75f1-4c34-8365-5c5f8061c6e0)
+
+This gives me clean columns with everything labeled correctly.
+
+Now that I have all the data needed to know where everyone is, and when trying to connect to my VM. I want a map to better visualize this data.
+
+To do this, type “ Microsoft Sentinel” in the top search bar in Microsoft Azure.
+
+Then select “Workbooks” in the “Threat Management drop down”.
+
+![image](https://github.com/user-attachments/assets/ef34f8d1-f22b-42be-a48e-afff99e0e95d)
+
+Select “Add Workbook”
+
+![image](https://github.com/user-attachments/assets/c9e43e91-545e-459d-8d19-c6e91aac0f5e)
+
+Select “Edit”
+
+![image](https://github.com/user-attachments/assets/1adcc65a-b15f-4ef1-8f54-386088d54e56)
+
+Select the … to the right of the 2 widgets and select “Remove”.
+
+![image](https://github.com/user-attachments/assets/9dbe8773-de39-4ff3-b89c-d60a5972c9bd)
+
+Then select the arrow attached to “Add”, select “Add query”
+
+![image](https://github.com/user-attachments/assets/3ad36757-dd12-4728-892f-56c48696a6cc)
+
+
+
+
 
 
 
