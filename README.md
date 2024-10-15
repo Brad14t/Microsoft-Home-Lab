@@ -119,8 +119,85 @@ Once complete select “Review + Create”.
 
 ![image](https://github.com/user-attachments/assets/89560f8a-041e-4019-8232-c8a84e98b38c)
 
+Now I have a log analytics workspace. Next I want the ability for logs to be gathered from my VM.
 
+To do this, in the search bar at the top type “Microsoft Defender for Cloud”.
 
+![image](https://github.com/user-attachments/assets/3618aa17-6ef3-445c-b20b-9127ea2a4037)
+
+![image](https://github.com/user-attachments/assets/2d5d35b3-777f-4b0a-b4c7-d8bcbd7e13f2)
+
+Next scroll down to and select “Environment settings”.
+
+![image](https://github.com/user-attachments/assets/05be5de3-f17f-46d6-a584-a14b75722712)
+
+Then expand the arrows to get to the log analytics workspace. Then Select it.
+
+![image](https://github.com/user-attachments/assets/969136cd-84bf-4340-9015-6bbc74cc0cab)
+
+Once inside settings, select Servers On and leave SQL servers off, since nothing will be used with SQL for this use case. 
+
+Then select “Save”
+
+![image](https://github.com/user-attachments/assets/5a692e4a-af24-4048-a725-c3523ec4f2a3)
+
+Once saved select “Data collection” to the left.
+
+![image](https://github.com/user-attachments/assets/419e3fb4-8f5f-4997-be08-9cd1e4d9326f)
+
+Select “All Events” since I want all data to be collected. Then click “Save”.
+
+![image](https://github.com/user-attachments/assets/665c6482-de94-4c27-8d08-20e64a064586)
+
+Now heading back to log analytics in the top search bar. I will select my workspace. Select “Virtual machines”. Lastly, select my VM.
+
+![image](https://github.com/user-attachments/assets/48ded32d-8a74-44d0-972d-3d1c4cf8a669)
+
+Then I will select “Connect”, this is connecting the VM to the workspace.
+
+![image](https://github.com/user-attachments/assets/a8ef45ae-d348-4d45-8ee4-139dc3d03d7d)
+
+Next I want to visualize the inbound data. For that I want a SIEM. Microsoft Sentinel will be used in this use case.
+
+To do this, in the search bar at the top type “Sentinel”.
+
+![image](https://github.com/user-attachments/assets/47b03c0a-1856-403e-865b-a11b492454b6)
+
+Select “Create Microsoft Sentinel”
+
+![image](https://github.com/user-attachments/assets/33f79a30-b3d1-44e2-b2e2-4184db42a90a)
+
+Select the log analytics workspace you want to connect to Sentinel. Then select “Add”
+
+![image](https://github.com/user-attachments/assets/6324d179-10ac-4a39-8415-ba927b2d72be)
+
+After Sentinel is set up and connected. I head back to the new Virtual machine.
+
+To do this, type “Virtual machines” in the top search bar. And select new VM.
+
+Inside of the new VM locate the public IP address. Copy to clipboard, this will be used to RDP to this VM from home device.
+
+![image](https://github.com/user-attachments/assets/c2ca48fa-257b-46f2-8ec3-9f9f5de230ce)
+
+Next select the start button on home device.
+
+Type and select “Remote Desktop Connection”
+
+![image](https://github.com/user-attachments/assets/1636b4da-1674-479f-af8d-f6789ba93586)
+
+Paste the public IP address. Then select “Connect”.
+
+![image](https://github.com/user-attachments/assets/dc86e025-e319-41d3-adf4-c44136e10a4d)
+
+Select “More choices” to use a different account and enter the credentials used previously to create the account.
+
+![image](https://github.com/user-attachments/assets/5dc60a2e-0174-493e-ab59-f57b7072bf83)
+
+Then accept the certificate warning.
+
+After this step you will connect to the VM, this might take a few minutes.
+
+![image](https://github.com/user-attachments/assets/d41a8e7a-6ade-4440-aaf8-d2a21ceb1eb8)
 
 
 
