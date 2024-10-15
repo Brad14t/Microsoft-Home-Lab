@@ -385,7 +385,7 @@ If no data is loading give it ~10 minutes. Eventually it will show.
 
 Now I have the raw data, but I want the columns of this data to show whats in the raw data, in a more understandable way.
 
-To do this, use the formated KQL Query in KQL Query mode.
+To do this, use the Custom_KQL_Query code in KQL Query mode.
 
 ![image](https://github.com/user-attachments/assets/efd7627d-75f1-4c34-8365-5c5f8061c6e0)
 
@@ -415,6 +415,13 @@ Then select the arrow attached to “Add”, select “Add query”
 
 ![image](https://github.com/user-attachments/assets/3ad36757-dd12-4728-892f-56c48696a6cc)
 
+In the new workbook use the Custom_KQL_Query to get the correct data, for the map.
+
+I discussed with Chat GPT on how to make this and tweak it till this Query worked perfectly. 
+
+Make sure to change the “Visualization” tab to “Map”. Then select “Map Settings”
+
+![3](https://github.com/user-attachments/assets/a8df76b8-8abe-46c8-bbda-b6ec3168bd87)
 
 
 
