@@ -1,0 +1,15 @@
+[Your Table Name]
+| extend Latitude = extract("latitude:([0-9.-]+)", 1, RawData)
+| extend Longitude = extract("longitude:([0-9.-]+)", 1, RawData)
+| extend Country = extract("country:([^,]+)", 1, RawData)
+| where Latitude != "" and Longitude != ""    // Ensure we only include rows with coordinates
+| summarize Event_id = count() by Country     // Count events per country
+| join kind=inner (
+    GeolocationfromfRDP_CL
+    | extend Latitude = extract("latitude:([0-9.-]+)", 1, RawData)
+    | extend Longitude = extract("longitude:([0-9.-]+)", 1, RawData)
+    | extend Country = extract("country:([^,]+)", 1, RawData)
+    | where Latitude != "" and Longitude != ""    // Ensure we only include rows with coordinates
+    | project Latitude, Longitude, Country        // Retain latitude, longitude, and country for plotting
+) on Country
+| project Latitude, Longitude, Country, Event_id  // Display latitude, longitude, country, and event count
