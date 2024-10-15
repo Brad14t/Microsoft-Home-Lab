@@ -7,6 +7,8 @@ Head to this link: [https://azure.microsoft.com/en-us/pricing/purchase-options/a
 
 Then click “Try Azure for free”, enter personal information.
 
+This will give me a free $200 credit with Azure Cloud enviorment. Which wont be close to used by the end of this lab.
+
 ![3](https://github.com/user-attachments/assets/4389bc06-4cce-4046-a145-bced8623eb53)
 
 Then select “Go to Azure Portal”
@@ -385,7 +387,7 @@ If no data is loading give it ~10 minutes. Eventually it will show.
 
 Now I have the raw data, but I want the columns of this data to show whats in the raw data, in a more understandable way.
 
-To do this, use the Custom_KQL_Query code in KQL Query mode.
+To do this, use the Custom_KQL_Query code in KQL Query mode. I used an old not working query in this picture but solve this issue later.
 
 ![image](https://github.com/user-attachments/assets/efd7627d-75f1-4c34-8365-5c5f8061c6e0)
 
@@ -422,6 +424,48 @@ I discussed with Chat GPT on how to make this and tweak it till this Query worke
 Make sure to change the “Visualization” tab to “Map”. Then select “Map Settings”
 
 ![3](https://github.com/user-attachments/assets/a8df76b8-8abe-46c8-bbda-b6ec3168bd87)
+
+For all Map Settings its best to tweak for each use case, these settings worked great for mine.
+
+For Layout Settings:
+
+![image](https://github.com/user-attachments/assets/9570b96b-f3b1-4502-b929-0ffb4c969d9b)
+
+For color I want a heatmap to show where the most attempts are coming from.
+
+For Color Settings:
+
+![image](https://github.com/user-attachments/assets/c626a9b2-1db4-427c-a585-49fed1a729c8)
+
+For Metric Settings:
+
+![image](https://github.com/user-attachments/assets/f7af2638-0f06-47ed-ad24-51cee41afbe4)
+
+
+Now with all the correct settings I have a map that shows the location of all RDP logon attempts that have failed. With correct colors showing “hot” areas with many attempts. Also A counter at the bottom to show the number of attempts.
+
+![image](https://github.com/user-attachments/assets/dd7ff691-386b-42fd-8e0f-0bb73c48c7d7)
+
+Once happy with how the map looks select “Save and close”.
+
+Then make sure to select the “Save” at the top to save to the workbook.
+
+Enter a name, then fill the rest with your resources.
+
+![image](https://github.com/user-attachments/assets/06994fa9-5b75-4ac7-8341-682db909405f)
+
+Conclusion:
+
+During this project, I set up a virtual machine (VM) to monitor brute-force login attempts from around the world. Over the course of several hours, I observed increasing login attempts from various countries. The data illustrated how vulnerable open services like Remote Desktop Protocol (RDP) can be, as even a non-prominent VM attracted thousands of login attempts. I learned the importance of implementing strong passwords and avoiding common usernames, as these were frequently targeted by attackers. The value of multi-factor authentication (MFA) and restricted access to services was also highlighted as essential security practices. Analyzing the login attempts reinforced the need for continuous monitoring and quick response to threats. Overall, this hands-on experience deepened my understanding of cybersecurity risks and defenses in a practical context.
+
+FYI: Only $3 was used setting all this up, and using all 1000 free API credits for the day.
+
+This allows for anyone to go back and practice creating this and familiarizing yourself with the envirment, applications and administration of all steps for future use in a company.
+
+
+
+
+
 
 
 
