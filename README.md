@@ -1,4 +1,4 @@
-# SIEM_Home_Lab
+# SIEM Home Lab
 
 # Description:
 
